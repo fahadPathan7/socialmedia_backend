@@ -1,0 +1,82 @@
+syntax = "proto3"
+
+package post;
+
+option go_package = "./proto/post";
+
+// PostService definition
+service PostService {
+    rpc Create(CreateRequest) returns (CreateResponse);
+    rpc Read(ReadRequest) returns (ReadResponse);
+    rpc Update(UpdateRequest) returns (UpdateResponse);
+    rpc Delete(DeleteRequest) returns (DeleteResponse);
+}
+
+// Post message definition
+message Post {
+    string id = 1;
+    string title = 2;
+    string content = 3;
+    string author = 4;
+    string created_at = 5;
+    string updated_at = 6;
+}
+
+// CreateRequest message definition
+message CreateRequest {
+    string title = 1;
+    string content = 2;
+    string author = 3;
+}
+
+// CreateResponse message definition
+message CreateResponse {
+    string id = 1;
+    string title = 2;
+    string content = 3;
+    string author = 4;
+    string created_at = 5;
+    string updated_at = 6;
+}
+
+// ReadRequest message definition
+message ReadRequest {
+    string id = 1;
+}
+
+// ReadResponse message definition
+message ReadResponse {
+    string id = 1;
+    string title = 2;
+    string content = 3;
+    string author = 4;
+    string created_at = 5;
+    string updated_at = 6;
+}
+
+// UpdateRequest message definition
+message UpdateRequest {
+    string id = 1;
+    string title = 2;
+    string content = 3;
+}
+
+// UpdateResponse message definition
+message UpdateResponse {
+    string id = 1;
+    string title = 2;
+    string content = 3;
+    string author = 4;
+    string created_at = 5;
+    string updated_at = 6;
+}
+
+// DeleteRequest message definition
+message DeleteRequest {
+    string id = 1;
+}
+
+// DeleteResponse message definition
+message DeleteResponse {
+    string id = 1;
+}

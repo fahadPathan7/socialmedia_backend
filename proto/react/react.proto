@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package react;
+
+option go_package = "./proto/react";
+
+// ReactService definition
+service ReactService {
+    rpc Create(CreateRequest) returns (CreateResponse);
+    rpc Read(ReadRequest) returns (ReadResponse);
+    rpc Update(UpdateRequest) returns (UpdateResponse);
+    rpc Delete(DeleteRequest) returns (DeleteResponse);
+}
+
+// React message definition
+message React {
+    string id = 1;
+    string post_id = 2;
+    string author = 3;
+    string type = 4;
+    string created_at = 5;
+    string updated_at = 6;
+}
+
+// CreateRequest message definition
+message CreateRequest {
+    string post_id = 1;
+    string author = 2;
+    string type = 3;
+}
+
+// CreateResponse message definition
+message CreateResponse {
+    string id = 1;
+    string post_id = 2;
+    string author = 3;
+    string type = 4;
+    string created_at = 5;
+    string updated_at = 6;
+}
+
+// ReadRequest message definition
+message ReadRequest {
+    string id = 1;
+}
+
+// ReadResponse message definition
+message ReadResponse {
+    string id = 1;
+    string post_id = 2;
+    string author = 3;
+    string type = 4;
+    string created_at = 5;
+    string updated_at = 6;
+}
+
+// UpdateRequest message definition
+message UpdateRequest {
+    string id = 1;
+    string post_id = 2;
+    string type = 4;
+}
+
+// UpdateResponse message definition
+message UpdateResponse {
+    string id = 1;
+    string post_id = 2;
+    string author = 3;
+    string type = 4;
+    string created_at = 5;
+    string updated_at = 6;
+}
+
+// DeleteRequest message definition
+message DeleteRequest {
+    string id = 1;
+}
+
+// DeleteResponse message definition
+message DeleteResponse {
+    string id = 1;
+}

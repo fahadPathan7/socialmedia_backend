@@ -1,0 +1,10 @@
+syntax = "proto3";
+package batman;
+
+option go_package = "./proto/batman";
+
+message ErrorDetails {
+    string Field = 1;
+    string Error = 2;
+    string Message = 3;
+}
