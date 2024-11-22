@@ -14,6 +14,8 @@ var NotAuthGuardedEndpoints = map[string]bool{
 
 // AccessableRoles maps endpoints that are accessable by roles
 var AccessableRoles = map[string][]string{
-	servicePath + "Register":                      {accesscontrol.Admin, accesscontrol.User},
-	servicePath + "Login":                         {accesscontrol.Admin, accesscontrol.User},
+	servicePath + "Register":                      {accesscontrol.Admin, accesscontrol.User, accesscontrol.Guest},
+	servicePath + "Login":                         {accesscontrol.Admin, accesscontrol.User, accesscontrol.Guest},
+	servicePath + "GetUserById":                   {accesscontrol.Admin, accesscontrol.User},
+	servicePath + "GetUserByEmail":                {accesscontrol.Admin, accesscontrol.User},
 }

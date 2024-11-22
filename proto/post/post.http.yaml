@@ -1,0 +1,24 @@
+type: google.api.Service
+config_version: 3
+
+http:
+  rules:
+  - selector: post.PostService.Create
+    post: /v1/post.PostService/Create
+    body: "*"
+
+  - selector: post.PostService.Read
+    post: /v1/post.PostService/Read
+    body: "*"
+
+  - selector: post.PostService.ReadAll
+    post: /v1/post.PostService/ReadAll
+    body: "*"
+
+  - selector: post.PostService.Update
+    post: /v1/post.PostService/Update
+    body: "*"
+
+  - selector: post.PostService.Delete
+    post: /v1/post.PostService/Delete
+    body: "*"

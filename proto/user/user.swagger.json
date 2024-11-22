@@ -110,6 +110,30 @@
         }
       }
     },
+    "userGetUserByEmailResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/userUser"
+        },
+        "status": {
+          "$ref": "#/definitions/userStatus"
+        }
+      },
+      "title": "GetUserByEmailResponse message definition"
+    },
+    "userGetUserByIdResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/userUser"
+        },
+        "status": {
+          "$ref": "#/definitions/userStatus"
+        }
+      },
+      "title": "GetUserByIdResponse message definition"
+    },
     "userLoginRequest": {
       "type": "object",
       "properties": {
@@ -182,6 +206,30 @@
         }
       },
       "title": "Status message definition"
+    },
+    "userUser": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "Roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "User message definition"
     }
   }
 }

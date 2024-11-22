@@ -8,6 +8,8 @@ option go_package = "./proto/user";
 service UserService {
     rpc Register(RegisterRequest) returns (RegisterResponse);
     rpc Login(LoginRequest) returns (LoginResponse);
+    rpc GetUserById(GetUserByIdRequest) returns (GetUserByIdResponse);
+    rpc GetUserByEmail(GetUserByEmailRequest) returns (GetUserByEmailResponse);
 }
 
 // User message definition
@@ -45,6 +47,28 @@ message LoginRequest {
 message LoginResponse {
     Status status = 1;
     string token = 2;
+}
+
+// GetUserByIdRequest message definition
+message GetUserByIdRequest {
+    string id = 1;
+}
+
+// GetUserByIdResponse message definition
+message GetUserByIdResponse {
+    User user = 1;
+    Status status = 2;
+}
+
+// GetUserByEmailRequest message definition
+message GetUserByEmailRequest {
+    string email = 1;
+}
+
+// GetUserByEmailResponse message definition
+message GetUserByEmailResponse {
+    User user = 1;
+    Status status = 2;
 }
 
 // Status message definition

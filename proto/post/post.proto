@@ -1,4 +1,4 @@
-syntax = "proto3"
+syntax = "proto3";
 
 package post;
 
@@ -8,6 +8,7 @@ option go_package = "./proto/post";
 service PostService {
     rpc Create(CreateRequest) returns (CreateResponse);
     rpc Read(ReadRequest) returns (ReadResponse);
+    rpc ReadAll(Empty) returns (ReadAllResponse);
     rpc Update(UpdateRequest) returns (UpdateResponse);
     rpc Delete(DeleteRequest) returns (DeleteResponse);
 }
@@ -37,6 +38,7 @@ message CreateResponse {
     string author = 4;
     string created_at = 5;
     string updated_at = 6;
+    Status status = 7;
 }
 
 // ReadRequest message definition
@@ -52,6 +54,7 @@ message ReadResponse {
     string author = 4;
     string created_at = 5;
     string updated_at = 6;
+    Status status = 7;
 }
 
 // UpdateRequest message definition
@@ -69,6 +72,7 @@ message UpdateResponse {
     string author = 4;
     string created_at = 5;
     string updated_at = 6;
+    Status status = 7;
 }
 
 // DeleteRequest message definition
@@ -79,4 +83,20 @@ message DeleteRequest {
 // DeleteResponse message definition
 message DeleteResponse {
     string id = 1;
+    Status status = 2;
+}
+
+// Empty message definition
+message Empty {}
+
+// ReadAllResponse message definition
+message ReadAllResponse {
+    repeated Post posts = 1;
+    Status status = 2;
+}
+
+// status
+message Status {
+    int32 code = 1;
+    string message = 2;
 }

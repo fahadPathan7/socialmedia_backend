@@ -37,6 +37,7 @@ message CreateResponse {
     string type = 4;
     string created_at = 5;
     string updated_at = 6;
+    Status status = 7;
 }
 
 // ReadRequest message definition
@@ -52,6 +53,7 @@ message ReadResponse {
     string type = 4;
     string created_at = 5;
     string updated_at = 6;
+    Status status = 7;
 }
 
 // UpdateRequest message definition
@@ -69,6 +71,7 @@ message UpdateResponse {
     string type = 4;
     string created_at = 5;
     string updated_at = 6;
+    Status status = 7;
 }
 
 // DeleteRequest message definition
@@ -79,4 +82,11 @@ message DeleteRequest {
 // DeleteResponse message definition
 message DeleteResponse {
     string id = 1;
+    Status status = 2;
+}
+
+// status
+message Status {
+    int32 code = 1;
+    string message = 2;
 }

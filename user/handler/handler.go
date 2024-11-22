@@ -112,6 +112,56 @@ func (s *service) Login(ctx context.Context, r *pb.LoginRequest) (*pb.LoginRespo
 	}, nil
 }
 
+// Get a user by id
+func (s *service) GetUserByID(ctx context.Context, r *pb.GetUserByIdRequest) (*pb.GetUserByIdResponse, error) {
+	// // Validate the request
+	// err := s.validator.ValidateGetUserByIDRequest(r)
+	// if err != nil {
+	// 	return nil, status.Error(codes.InvalidArgument, "Validation failed")
+	// }
+
+	// Get the user by id
+	user, err := s.repo.GetByID(r.GetId())
+	if err != nil {
+		return nil, status.Error(codes.NotFound, "User not found")
+	}
+
+	return &pb.GetUserByIdResponse{
+		User: &pb.User{
+			Id:       user.ID.Hex(), // convert the object id to a string
+			Username: user.Username,
+			Email:    user.Email,
+			Roles:    user.Roles,
+		},
+		Status: &pb.Status{Code: 200, Message: "User found"},
+	}, nil
+}
+
+// Get a user by email
+func (s *service) GetUserByEmail(ctx context.Context, r *pb.GetUserByEmailRequest) (*pb.GetUserByEmailResponse, error) {
+	// // Validate the request
+	// err := s.validator.ValidateGetUserByEmailRequest(r)
+	// if err != nil {
+	// 	return nil, status.Error(codes.InvalidArgument, "Validation failed")
+	// }
+
+	// Get the user by email
+	user, err := s.repo.GetByEmail(r.GetEmail())
+	if err != nil {
+		return nil, status.Error(codes.NotFound, "User not found")
+	}
+
+	return &pb.GetUserByEmailResponse{
+		User: &pb.User{
+			Id:       user.ID.Hex(), // convert the object id to a string
+			Username: user.Username,
+			Email:    user.Email,
+			Roles:    user.Roles,
+		},
+		Status: &pb.Status{Code: 200, Message: "User found"},
+	}, nil
+}
+
 // NewService returns a new user server
 func NewService(
 	repo repository.UserRepository,
