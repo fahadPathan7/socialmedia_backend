@@ -1,0 +1,12 @@
+// this should be in every microservice (post, comment, react, user)
+// need to change the API_ADDRESS and API_PORT for each microservice. (this example is for react service)
+// no need to change the MONGO_URI for each microservice.
+// no need to put .env file in the root directory.
+
+API_ADDRESS=localhost:10002
+API_PORT=10002
+MONGO_URI="your mongo uri"
+POST_SERVICE_URI=localhost:10000
+COMMENT_SERVICE_URI=localhost:10001
+REACT_SERVICE_URI=localhost:10002
+USER_SERVICE_URI=localhost:10003
