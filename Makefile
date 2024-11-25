@@ -13,3 +13,11 @@ protogen-post:
 	--grpc-gateway_out=logtostderr=true,grpc_api_configuration=./proto/post/post.http.yaml:. \
 	--swagger_out=logtostderr=true,grpc_api_configuration=./proto/post/post.http.yaml:. \
 	./proto/post/post.proto
+
+protogen-comment:
+	protoc -I. \
+	--go_out=. \
+	--go-grpc_out=. \
+	--grpc-gateway_out=logtostderr=true,grpc_api_configuration=./proto/comment/comment.http.yaml:. \
+	--swagger_out=logtostderr=true,grpc_api_configuration=./proto/comment/comment.http.yaml:. \
+	./proto/comment/comment.proto

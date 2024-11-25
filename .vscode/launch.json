@@ -16,6 +16,14 @@
             "mode": "debug",
             "program": "${workspaceFolder}/post/main.go",
             "envFile": "${workspaceFolder}/post/.env",
+        },
+        {
+            "name": "Comment API",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/comment/main.go",
+            "envFile": "${workspaceFolder}/comment/.env",
         }
     ]
 }

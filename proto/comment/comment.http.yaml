@@ -1,0 +1,24 @@
+type: google.api.Service
+config_version: 3
+
+http:
+  rules:
+  - selector: comment.CommentService.CreateComment
+    post: /v1/comment.CommentService/CreateComment
+    body: "*"
+
+  - selector: comment.CommentService.ReadAComment
+    post: /v1/comment.CommentService/ReadAComment
+    body: "*"
+
+  - selector: comment.CommentService.ReadAllCommentsOfAPost
+    post: /v1/comment.CommentService/ReadAllCommentsOfAPost
+    body: "*"
+
+  - selector: comment.CommentService.UpdateAComment
+    post: /v1/comment.CommentService/UpdateAComment
+    body: "*"
+
+  - selector: comment.CommentService.DeleteAComment
+    post: /v1/comment.CommentService/DeleteAComment
+    body: "*"

@@ -6,10 +6,11 @@ option go_package = "./proto/comment";
 
 // CommentService definition
 service CommentService {
-    rpc Create(CreateRequest) returns (CreateResponse);
-    rpc Read(ReadRequest) returns (ReadResponse);
-    rpc Update(UpdateRequest) returns (UpdateResponse);
-    rpc Delete(DeleteRequest) returns (DeleteResponse);
+    rpc CreateComment(CreateRequest) returns (CreateResponse);
+    rpc ReadAComment(ReadRequest) returns (ReadResponse);
+    rpc ReadAllCommentsOfAPost(ReadAllRequest) returns (ReadAllResponse);
+    rpc UpdateAComment(UpdateRequest) returns (UpdateResponse);
+    rpc DeleteAComment(DeleteRequest) returns (DeleteResponse);
 }
 
 // Comment message definition
@@ -56,10 +57,20 @@ message ReadResponse {
     Status status = 7;
 }
 
+// ReadAllRequest message definition
+message ReadAllRequest {
+    string post_id = 1;
+}
+
+// ReadAllResponse message definition
+message ReadAllResponse {
+    repeated Comment comments = 1;
+    Status status = 2;
+}
+
 // UpdateRequest message definition
 message UpdateRequest {
     string id = 1;
-    string post_id = 2;
     string content = 3;
 }
 
