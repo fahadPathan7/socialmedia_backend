@@ -8,6 +8,7 @@ import (
 	// pb "github.com/fahadPathan7/socialmedia_backend/proto/user"
 	"github.com/fahadPathan7/socialmedia_backend/user/config"
 	"github.com/fahadPathan7/socialmedia_backend/user/model"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -35,9 +36,14 @@ func (r *userRepository) Create(user *model.User) error {
 func (r *userRepository) GetByID(id string) (*model.User, error) {
 	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
 	coll := r.client.Database(r.config.Database).Collection(r.config.UserColl)
-	filter := bson.M{"id": id}
+	// convert the id string to object id
+	oid, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return nil, errors.New("Invalid id")
+	}
+	filter := bson.M{"_id": oid}
 	var user model.User
-	err := coll.FindOne(ctx, filter).Decode(&user)
+	err = coll.FindOne(ctx, filter).Decode(&user)
 	if err != nil {
 		return nil, errors.New("User not found")
 	}

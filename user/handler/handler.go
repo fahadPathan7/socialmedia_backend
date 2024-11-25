@@ -113,7 +113,7 @@ func (s *service) Login(ctx context.Context, r *pb.LoginRequest) (*pb.LoginRespo
 }
 
 // Get a user by id
-func (s *service) GetUserByID(ctx context.Context, r *pb.GetUserByIdRequest) (*pb.GetUserByIdResponse, error) {
+func (s *service) GetUserById(ctx context.Context, r *pb.GetUserByIdRequest) (*pb.GetUserByIdResponse, error) {
 	// // Validate the request
 	// err := s.validator.ValidateGetUserByIDRequest(r)
 	// if err != nil {

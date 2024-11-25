@@ -11,6 +11,70 @@
     "application/json"
   ],
   "paths": {
+    "/v1/user.UserService/GetUserByEmail": {
+      "post": {
+        "operationId": "UserService_GetUserByEmail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userGetUserByEmailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userGetUserByEmailRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      }
+    },
+    "/v1/user.UserService/GetUserById": {
+      "post": {
+        "operationId": "UserService_GetUserById",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userGetUserByIdResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userGetUserByIdRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      }
+    },
     "/v1/user.UserService/Login": {
       "post": {
         "operationId": "UserService_Login",
@@ -110,6 +174,15 @@
         }
       }
     },
+    "userGetUserByEmailRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      },
+      "title": "GetUserByEmailRequest message definition"
+    },
     "userGetUserByEmailResponse": {
       "type": "object",
       "properties": {
@@ -121,6 +194,15 @@
         }
       },
       "title": "GetUserByEmailResponse message definition"
+    },
+    "userGetUserByIdRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "title": "GetUserByIdRequest message definition"
     },
     "userGetUserByIdResponse": {
       "type": "object",

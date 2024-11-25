@@ -10,3 +10,11 @@ http:
   - selector: user.UserService.Login
     post: /v1/user.UserService/Login
     body: "*"
+
+  - selector: user.UserService.GetUserById
+    post: /v1/user.UserService/GetUserById
+    body: "*"
+
+  - selector: user.UserService.GetUserByEmail
+    post: /v1/user.UserService/GetUserByEmail
+    body: "*"
