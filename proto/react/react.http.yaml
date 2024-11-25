@@ -1,0 +1,24 @@
+type: google.api.Service
+config_version: 3
+
+http:
+  rules:
+  - selector: react.ReactService.CreateAReact
+    post: /v1/react.ReactService/CreateAReact
+    body: "*"
+
+  - selector: react.ReactService.ReadAReact
+    post: /v1/react.ReactService/ReadAReact
+    body: "*"
+
+  - selector: react.ReactService.ReadAllReactsOfAPost
+    post: /v1/react.ReactService/ReadAllReactsOfAPost
+    body: "*"
+
+  - selector: react.ReactService.UpdateAReact
+    post: /v1/react.ReactService/UpdateAReact
+    body: "*"
+
+  - selector: react.ReactService.DeleteAReact
+    post: /v1/react.ReactService/DeleteAReact
+    body: "*"

@@ -6,10 +6,12 @@ option go_package = "./proto/react";
 
 // ReactService definition
 service ReactService {
-    rpc Create(CreateRequest) returns (CreateResponse);
-    rpc Read(ReadRequest) returns (ReadResponse);
-    rpc Update(UpdateRequest) returns (UpdateResponse);
-    rpc Delete(DeleteRequest) returns (DeleteResponse);
+    rpc CreateAReact(CreateRequest) returns (CreateResponse);
+    rpc ReadAReact(ReadRequest) returns (ReadResponse);
+    rpc ReadAllReactsOfAPost(ReadAllRequest) returns (ReadAllResponse);
+    rpc UpdateAReact(UpdateRequest) returns (UpdateResponse);
+    rpc DeleteAReact(DeleteRequest) returns (DeleteResponse);
+    rpc DeleteAllReactsOfAPost(DeleteAllReactsOfAPostRequest) returns (DeleteAllReactsOfAPostResponse);
 }
 
 // React message definition
@@ -56,6 +58,17 @@ message ReadResponse {
     Status status = 7;
 }
 
+// ReadAllRequest message definition
+message ReadAllRequest {
+    string post_id = 1;
+}
+
+// ReadAllResponse message definition
+message ReadAllResponse {
+    repeated React reacts = 1;
+    Status status = 2;
+}
+
 // UpdateRequest message definition
 message UpdateRequest {
     string id = 1;
@@ -82,6 +95,17 @@ message DeleteRequest {
 // DeleteResponse message definition
 message DeleteResponse {
     string id = 1;
+    Status status = 2;
+}
+
+// DeleteAllReactsOfAPostRequest message definition
+message DeleteAllReactsOfAPostRequest {
+    string post_id = 1;
+}
+
+// DeleteAllReactsOfAPostResponse message definition
+message DeleteAllReactsOfAPostResponse {
+    string post_id = 1;
     Status status = 2;
 }
 

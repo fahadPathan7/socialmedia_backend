@@ -21,3 +21,11 @@ protogen-comment:
 	--grpc-gateway_out=logtostderr=true,grpc_api_configuration=./proto/comment/comment.http.yaml:. \
 	--swagger_out=logtostderr=true,grpc_api_configuration=./proto/comment/comment.http.yaml:. \
 	./proto/comment/comment.proto
+
+protogen-react:
+	protoc -I. \
+	--go_out=. \
+	--go-grpc_out=. \
+	--grpc-gateway_out=logtostderr=true,grpc_api_configuration=./proto/react/react.http.yaml:. \
+	--swagger_out=logtostderr=true,grpc_api_configuration=./proto/react/react.http.yaml:. \
+	./proto/react/react.proto

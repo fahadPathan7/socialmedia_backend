@@ -1,0 +1,424 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/react/react.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/react.ReactService/CreateAReact": {
+      "post": {
+        "operationId": "ReactService_CreateAReact",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/reactCreateResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/reactCreateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ReactService"
+        ]
+      }
+    },
+    "/v1/react.ReactService/DeleteAReact": {
+      "post": {
+        "operationId": "ReactService_DeleteAReact",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/reactDeleteResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/reactDeleteRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ReactService"
+        ]
+      }
+    },
+    "/v1/react.ReactService/ReadAReact": {
+      "post": {
+        "operationId": "ReactService_ReadAReact",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/reactReadResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/reactReadRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ReactService"
+        ]
+      }
+    },
+    "/v1/react.ReactService/ReadAllReactsOfAPost": {
+      "post": {
+        "operationId": "ReactService_ReadAllReactsOfAPost",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/reactReadAllResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/reactReadAllRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ReactService"
+        ]
+      }
+    },
+    "/v1/react.ReactService/UpdateAReact": {
+      "post": {
+        "operationId": "ReactService_UpdateAReact",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/reactUpdateResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/reactUpdateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ReactService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "reactCreateRequest": {
+      "type": "object",
+      "properties": {
+        "post_id": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "title": "CreateRequest message definition"
+    },
+    "reactCreateResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "post_id": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/reactStatus"
+        }
+      },
+      "title": "CreateResponse message definition"
+    },
+    "reactDeleteAllReactsOfAPostResponse": {
+      "type": "object",
+      "properties": {
+        "post_id": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/reactStatus"
+        }
+      },
+      "title": "DeleteAllReactsOfAPostResponse message definition"
+    },
+    "reactDeleteRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "title": "DeleteRequest message definition"
+    },
+    "reactDeleteResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/reactStatus"
+        }
+      },
+      "title": "DeleteResponse message definition"
+    },
+    "reactReact": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "post_id": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      },
+      "title": "React message definition"
+    },
+    "reactReadAllRequest": {
+      "type": "object",
+      "properties": {
+        "post_id": {
+          "type": "string"
+        }
+      },
+      "title": "ReadAllRequest message definition"
+    },
+    "reactReadAllResponse": {
+      "type": "object",
+      "properties": {
+        "reacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/reactReact"
+          }
+        },
+        "status": {
+          "$ref": "#/definitions/reactStatus"
+        }
+      },
+      "title": "ReadAllResponse message definition"
+    },
+    "reactReadRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "title": "ReadRequest message definition"
+    },
+    "reactReadResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "post_id": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/reactStatus"
+        }
+      },
+      "title": "ReadResponse message definition"
+    },
+    "reactStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "status"
+    },
+    "reactUpdateRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "post_id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateRequest message definition"
+    },
+    "reactUpdateResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "post_id": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/reactStatus"
+        }
+      },
+      "title": "UpdateResponse message definition"
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}
