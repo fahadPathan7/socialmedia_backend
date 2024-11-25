@@ -151,7 +151,7 @@ func main() {
 	}
 
 	// Enable swagger
-	err = enableSwagger(ms.mux, "/docs/", "./proto/comment/comment.swagger.json")
+	err = enableSwagger(ms.mux, "/docs/", "../proto/comment/comment.swagger.json")
 	if err != nil {
 		log.Fatalf("could not enable swagger: %v", err)
 	}
