@@ -239,6 +239,18 @@
       },
       "title": "CreateResponse message definition"
     },
+    "commentDeleteAllResponse": {
+      "type": "object",
+      "properties": {
+        "post_id": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/commentStatus"
+        }
+      },
+      "title": "DeleteAllResponse message definition"
+    },
     "commentDeleteRequest": {
       "type": "object",
       "properties": {

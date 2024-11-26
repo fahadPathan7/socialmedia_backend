@@ -17,4 +17,5 @@ var AccessableRoles = map[string][]string{
 	servicePath + "ReadAllCommentsOfAPost":                      {accesscontrol.Admin, accesscontrol.User},
 	servicePath + "UpdateAComment":                       {accesscontrol.Admin, accesscontrol.User},
 	servicePath + "DeleteAComment":                       {accesscontrol.Admin, accesscontrol.User},
+	servicePath + "DeleteAllCommentsOfAPost":             {accesscontrol.Admin, accesscontrol.User},
 }

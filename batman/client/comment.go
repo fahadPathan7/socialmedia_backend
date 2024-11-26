@@ -1,7 +1,7 @@
 package client
 
 import (
-	// "context"
+	"context"
 	"os"
 
 	"github.com/fahadPathan7/socialmedia_backend/proto/comment"
@@ -10,7 +10,7 @@ import (
 )
 
 type commentClient struct{
-	clent comment.CommentServiceClient
+	client comment.CommentServiceClient
 }
 
 // NewUserClient returns a new client for booking microservice
@@ -23,5 +23,22 @@ func NewCommentClient(systemCall bool) (comment.CommentServiceClient, *grpc.Clie
 	// defer conn.Close()
 	c := comment.NewCommentServiceClient(conn)
 	return c, conn, nil
+}
+
+// delete all comments for a post
+func DeleteAllCommentsOfAPost(postID string) error {
+	c, conn, err := NewCommentClient(true)
+	if err != nil {
+		return err
+	}
+	defer conn.Close()
+
+	_, err = c.DeleteAllCommentsOfAPost(context.Background(), &comment.DeleteAllRequest{
+		PostId: postID,
+	})
+	if err != nil {
+		return err
+	}
+	return nil
 }
 

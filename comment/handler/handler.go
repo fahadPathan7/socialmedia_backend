@@ -229,6 +229,27 @@ func (s *service) DeleteAComment(ctx context.Context, r *pb.DeleteRequest) (*pb.
 	}, nil
 }
 
+// delete all comments for a post
+func (s *service) DeleteAllCommentsOfAPost(ctx context.Context, r *pb.DeleteAllRequest) (*pb.DeleteAllResponse, error) {
+	// Validate the request
+	// err := s.validator.ValidateDeleteAllRequest(r)
+	// if err != nil {
+	// 	return nil, status.Error(codes.InvalidArgument, "Validation failed")
+	// }
+
+	// Delete all comments for a post
+	err := s.repo.DeleteAllCommentsForAPost(r.GetPostId())
+	if err != nil {
+		return nil, status.Error(codes.Internal, "Failed to delete comments")
+	}
+
+	// Return the response
+	return &pb.DeleteAllResponse{
+		PostId: r.GetPostId(),
+		Status: &pb.Status{Code: 200, Message: "Comments deleted successfully"},
+	}, nil
+}
+
 // NewService creates a new comment service
 func NewService(repo repository.CommentRepository, auth auth.Authenticator, validator validation.RequestValidator) pb.CommentServiceServer {
 	return &service{

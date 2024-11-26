@@ -95,6 +95,20 @@ func (r *commentRepository) DeleteAComment(id string) error {
 	return nil
 }
 
+// DeleteAllCommentsForAPost deletes all comments for a post
+func (r *commentRepository) DeleteAllCommentsForAPost(postID string) error {
+	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+	coll := r.client.Database(r.config.Database).Collection(r.config.CommentColl)
+	// convert the post id string to object id
+	objectID, err := primitive.ObjectIDFromHex(postID)
+	filter := bson.M{"post_id": objectID}
+	_, err = coll.DeleteMany(ctx, filter)
+	if err != nil {
+		return errors.New("Failed to delete comments")
+	}
+	return nil
+}
+
 // NewMongoRepository returns a new comment repository
 func NewMongoRepository(dbclient *mongo.Client) CommentRepository {
 	return &commentRepository{

@@ -5,6 +5,7 @@ import (
 
 	// "github.com/fahadPathan7/socialmedia_backend/batman"
 	"github.com/fahadPathan7/socialmedia_backend/batman/auth"
+	"github.com/fahadPathan7/socialmedia_backend/batman/client"
 	accesscontrol "github.com/fahadPathan7/socialmedia_backend/batman/access_control"
 	"github.com/fahadPathan7/socialmedia_backend/post/model"
 	"github.com/fahadPathan7/socialmedia_backend/post/repository"
@@ -217,6 +218,18 @@ func (s *service) Delete(ctx context.Context, r *pb.DeleteRequest) (*pb.DeleteRe
 	err = s.repo.Delete(r.GetId())
 	if err != nil {
 		return nil, status.Error(codes.Internal, "Failed to delete post")
+	}
+
+	// Delete all the comments of the post
+	err = client.DeleteAllCommentsOfAPost(r.GetId())
+	if err != nil {
+		return nil, status.Error(codes.Internal, "Failed to delete post comments")
+	}
+
+	// Delete all the reactions to the post
+	err = client.DeleteAllReactsOfAPost(r.GetId())
+	if err != nil {
+		return nil, status.Error(codes.Internal, "Failed to delete post reactions")
 	}
 
 	// Return the response

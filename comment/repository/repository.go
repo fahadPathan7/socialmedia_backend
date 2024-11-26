@@ -16,5 +16,7 @@ type CommentRepository interface {
 	UpdateAComment(comment *model.Comment) error
 	// Delete a comment
 	DeleteAComment(id string) error
+	// Delete all comments for a post
+	DeleteAllCommentsForAPost(postID string) error
 }
 

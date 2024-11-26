@@ -1,7 +1,7 @@
 package client
 
 import (
-	// "context"
+	"context"
 	"os"
 
 	"github.com/fahadPathan7/socialmedia_backend/proto/react"
@@ -10,7 +10,7 @@ import (
 )
 
 type reactClient struct{
-	clent react.ReactServiceClient
+	client react.ReactServiceClient
 }
 
 // NewUserClient returns a new client for booking microservice
@@ -23,5 +23,22 @@ func NewReactClient(systemCall bool) (react.ReactServiceClient, *grpc.ClientConn
 	// defer conn.Close()
 	c := react.NewReactServiceClient(conn)
 	return c, conn, nil
+}
+
+// delete all reacts for a post
+func DeleteAllReactsOfAPost(postID string) error {
+	c, conn, err := NewReactClient(true)
+	if err != nil {
+		return err
+	}
+	defer conn.Close()
+
+	_, err = c.DeleteAllReactsOfAPost(context.Background(), &react.DeleteAllReactsOfAPostRequest{
+		PostId: postID,
+	})
+	if err != nil {
+		return err
+	}
+	return nil
 }
 

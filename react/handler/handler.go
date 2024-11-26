@@ -221,29 +221,8 @@ func (s *service) DeleteAllReactsOfAPost(ctx context.Context, r *pb.DeleteAllRea
 	// 	return nil, status.Error(codes.InvalidArgument, "Validation failed")
 	// }
 
-	// Get the post
-	_, err := client.GetPostByID(ctx, r.GetPostId())
-	if err != nil {
-		return nil, status.Error(codes.NotFound, "Post not found")
-	}
-
-	// check if the user from context is the user who created the post
-	user, err := s.auth.UserFromContext(ctx)
-	if err != nil {
-		return nil, status.Error(codes.PermissionDenied, "User not found")
-	}
-
-	// check if the user is the author of the post
-	post, err := client.GetPostByID(ctx, r.GetPostId())
-	if err != nil {
-		return nil, status.Error(codes.NotFound, "Post not found")
-	}
-	if post.GetAuthor() != user.Email {
-		return nil, status.Error(codes.PermissionDenied, "User not allowed to delete reacts")
-	}
-
 	// Delete all reacts of the post
-	err = s.repo.DeleteAll(r.GetPostId())
+	err := s.repo.DeleteAll(r.GetPostId())
 	if err != nil {
 		return nil, status.Error(codes.Internal, "Failed to delete reacts")
 	}

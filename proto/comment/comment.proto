@@ -11,6 +11,7 @@ service CommentService {
     rpc ReadAllCommentsOfAPost(ReadAllRequest) returns (ReadAllResponse);
     rpc UpdateAComment(UpdateRequest) returns (UpdateResponse);
     rpc DeleteAComment(DeleteRequest) returns (DeleteResponse);
+    rpc DeleteAllCommentsOfAPost(DeleteAllRequest) returns (DeleteAllResponse);
 }
 
 // Comment message definition
@@ -93,6 +94,17 @@ message DeleteRequest {
 // DeleteResponse message definition
 message DeleteResponse {
     string id = 1;
+    Status status = 2;
+}
+
+// DeleteAllRequest message definition
+message DeleteAllRequest {
+    string post_id = 1;
+}
+
+// DeleteAllResponse message definition
+message DeleteAllResponse {
+    string post_id = 1;
     Status status = 2;
 }
 
