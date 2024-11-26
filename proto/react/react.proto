@@ -14,12 +14,24 @@ service ReactService {
     rpc DeleteAllReactsOfAPost(DeleteAllReactsOfAPostRequest) returns (DeleteAllReactsOfAPostResponse);
 }
 
+// Enum for react types
+enum ReactType {
+    LIKE = 0;
+    DISLIKE = 1;
+    LOVE = 2;
+    HAHA = 3;
+    WOW = 4;
+    SAD = 5;
+    ANGRY = 6;
+    CARE = 7;
+}
+
 // React message definition
 message React {
     string id = 1;
     string post_id = 2;
     string author = 3;
-    string type = 4;
+    ReactType type = 4;
     string created_at = 5;
     string updated_at = 6;
 }
@@ -28,7 +40,7 @@ message React {
 message CreateRequest {
     string post_id = 1;
     string author = 2;
-    string type = 3;
+    ReactType type = 3;
 }
 
 // CreateResponse message definition
@@ -73,7 +85,7 @@ message ReadAllResponse {
 message UpdateRequest {
     string id = 1;
     string post_id = 2;
-    string type = 4;
+    ReactType type = 3;
 }
 
 // UpdateResponse message definition

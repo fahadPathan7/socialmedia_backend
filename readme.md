@@ -103,6 +103,7 @@ Replace `<port>` with the port number of the running microservice.
 ### ❤️ Reaction Management
 
 - **Add Reaction**: React to a post.
+    - Reactions: `LIKE`, `DISLIKE`, `LOVE`, `HAHA`, `WOW`, `SAD`, `ANGRY`, `CARE`.
 - **View Reactions**: List reactions for a specific post.
 - **Update Reaction**: Modify a reaction.
 - **Delete Reaction**: Remove a reaction.

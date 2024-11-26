@@ -195,7 +195,7 @@
           "type": "string"
         },
         "type": {
-          "type": "string"
+          "$ref": "#/definitions/reactReactType"
         }
       },
       "title": "CreateRequest message definition"
@@ -273,7 +273,7 @@
           "type": "string"
         },
         "type": {
-          "type": "string"
+          "$ref": "#/definitions/reactReactType"
         },
         "created_at": {
           "type": "string"
@@ -283,6 +283,21 @@
         }
       },
       "title": "React message definition"
+    },
+    "reactReactType": {
+      "type": "string",
+      "enum": [
+        "LIKE",
+        "DISLIKE",
+        "LOVE",
+        "HAHA",
+        "WOW",
+        "SAD",
+        "ANGRY",
+        "CARE"
+      ],
+      "default": "LIKE",
+      "title": "Enum for react types"
     },
     "reactReadAllRequest": {
       "type": "object",
@@ -367,7 +382,7 @@
           "type": "string"
         },
         "type": {
-          "type": "string"
+          "$ref": "#/definitions/reactReactType"
         }
       },
       "title": "UpdateRequest message definition"

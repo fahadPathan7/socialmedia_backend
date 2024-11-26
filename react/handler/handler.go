@@ -45,6 +45,22 @@ func (s *service) CreateAReact(ctx context.Context, r *pb.CreateRequest) (*pb.Cr
 		return nil, status.Error(codes.PermissionDenied, "User not allowed to create react")
 	}
 
+	// check if user has already reacted to the post
+	reacts, err := s.repo.GetByPostID(r.GetPostId())
+	if err != nil {
+		return nil, status.Error(codes.Internal, "Failed to get reacts")
+	}
+	for _, react := range reacts {
+		if react.Author == r.GetAuthor() {
+			return nil, status.Error(codes.AlreadyExists, "User already reacted to the post")
+		}
+	}
+
+	// check if the react type is valid
+    if r.Type < pb.ReactType_LIKE || r.Type > pb.ReactType_CARE {
+        return nil, status.Error(codes.InvalidArgument, "Invalid react type")
+    }
+
 	// convert the post id string to object id
 	postIDO, err := primitive.ObjectIDFromHex(r.GetPostId())
 	if err != nil {
@@ -56,7 +72,7 @@ func (s *service) CreateAReact(ctx context.Context, r *pb.CreateRequest) (*pb.Cr
 		ID:      primitive.NewObjectID(), // it will generate a new object id for the react
 		PostID:  postIDO, // converted to object id
 		Author:  r.GetAuthor(),
-		Type:    r.GetType(),
+		Type:    r.GetType().String(),
 	}
 
 	// Save the react
@@ -124,7 +140,7 @@ func (s *service) ReadAllReactsOfAPost(ctx context.Context, r *pb.ReadAllRequest
 			Id: react.ID.Hex(),
 			PostId: react.PostID.Hex(),
 			Author: react.Author,
-			Type: react.Type,
+			Type: pb.ReactType(pb.ReactType_value[react.Type]),
 			CreatedAt: react.CreatedAt.String(),
 			UpdatedAt: react.UpdatedAt.String(),
 		})
@@ -159,8 +175,13 @@ func (s *service) UpdateAReact(ctx context.Context, r *pb.UpdateRequest) (*pb.Up
 		return nil, status.Error(codes.PermissionDenied, "User not allowed to update react")
 	}
 
+	// check if the react type is valid
+    if r.Type < pb.ReactType_LIKE || r.Type > pb.ReactType_CARE {
+        return nil, status.Error(codes.InvalidArgument, "Invalid react type")
+    }
+
 	// Update the react
-	react.Type = r.GetType()
+	react.Type = r.GetType().String()
 	err = s.repo.Update(react)
 	if err != nil {
 		return nil, status.Error(codes.Internal, "Failed to update react")
