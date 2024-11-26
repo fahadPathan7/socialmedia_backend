@@ -32,7 +32,7 @@ This project is a backend service for a social media application. It provides AP
 1. **📂 Clone the repository**
 
     ```sh
-    git clone https://github.com/yourusername/socialmedia_backend.git
+    git clone https://github.com/fahadPathan7/socialmedia_backend.git
     cd socialmedia_backend
     ```
 
